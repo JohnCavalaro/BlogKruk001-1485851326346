@@ -46,7 +46,7 @@ if(isset($_GET['akcja']) && $_GET['akcja']=='usun'){
             <!-- Pobieranie i wyświetlanie postów z bazy danych -->
 <?php
 $id = $_GET['id'];
-$host = "localhost";
+$host = "lamp.ii.us.edu.pl/~ii294710";
 $db_user = "ii294710";
 $db_password = "#Tymbark1936";
 $db_name = "ii294710";
