@@ -1,0 +1,47 @@
+
+
+body{
+    background-color: #ffffff;
+}
+
+nav{
+    font-size: 120%;
+}
+
+.jumbotron{
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    color: #ffffff;
+
+}
+
+.jumbotron h1{
+
+    padding-top: 300px;
+}
+
+.list-group-item{
+    font-size: 120%;
+}
+
+.img-circle{
+
+    width:180px;
+    height:180px;
+    border-radius:50%;
+
+}
+
+
+.well p{
+    font-size: 120%;
+}
+
+#usun_btn, #edycja_btn{
+
+    float: right;
+}

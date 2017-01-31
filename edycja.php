@@ -1,0 +1,79 @@
+<html>
+<head>
+    <script src="ckeditor/ckeditor.js"></script>
+
+    <?php
+    include 'head.php';
+    ?>
+</head>
+<body>
+<?php
+include 'navbar.php';
+?>
+<br><br><br><br><br><br><br>
+<div class="container">
+
+
+            <form method="post" id="post" style="clear: both">
+                <div class="form-group">
+                    <label for="topic">Temat:</label>
+
+                    <?php
+                    $id = $_GET['id'];
+                    $host = "localhost";
+                    $db_user = "ii294710";
+                    $db_password = "#Tymbark1936";
+                    $db_name = "ii294710";
+
+                    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                    $polaczenie->set_charset("utf8");
+
+                    $query = "SELECT * FROM posts WHERE ID=".$id;
+                    $result= $polaczenie->query($query);
+                    while($row = $result->fetch_assoc()) {
+                        $temat = $row["topic"];
+                        $tekst = $row["text"];
+
+                    }
+
+
+                    echo '<input type="text" class="form-control" name="topic" id="topic" value="'.$temat;
+                    echo'">';
+
+
+                    echo'<textarea name="notatnik" id="notatnik">'.$tekst;
+                    echo'</textarea>';
+
+
+                    ?>
+
+                </div>
+        <script>
+            CKEDITOR.replace('notatnik');
+        </script>
+        <button type="submit" id="btnAddPost" class="btn btn-block btn-success"  style="float: right">Aktualizuj post</button>
+</div>
+
+<?php
+$id = $_GET['id'];
+$host = "localhost";
+$db_user = "ii294710";
+$db_password = "#Tymbark1936";
+$db_name = "ii294710";
+
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+$polaczenie->set_charset("utf8");
+$date = date('Y-m-d H:i:s');
+
+$query = "UPDATE posts SET text ='".$_POST['notatnik']."', author='".$_SESSION['userLogin']."', date='".$date."', topic='".$_POST['topic']."' WHERE ID=".$id.";";
+
+
+if($_POST['notatnik']!='' && $_POST['topic']!=''){
+    $polaczenie->query($query);
+    header("Location: http://lamp.ii.us.edu.pl/~ii294710/");
+
+}
+?>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
